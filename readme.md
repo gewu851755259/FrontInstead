@@ -1,6 +1,8 @@
 ###问题背景###
 之前在编写[鲤鱼日语](https://github.com/54wall/MyJapanese)时，因为使用了外部的字体，这导致了一个问题就是我的ListView显示的是圆滑的字体，但是其他dialog、Spinner就全都是Android默认字体，这样不统一就会很难看。根据拿来主义，我找到了一个利用反射更换全局字体的方法，而且不需要使用外部库，够我用了。
 代码已经上传GitHub（字体自己下载吧，太大了）-[54wall/FrontInstead](https://github.com/54wall/FrontInstead)
+效果如下：
+![快速使用反射更换Android全局字体.jpg](https://github.com/54wall/FrontInstead/blob/master/快速使用反射更换Android全局字体.jpg)
 ####新建继承Application类的SetAppTypeface
 因为是全局更换字体，所以需要使用Application来完成全局的作用：
 ```
@@ -169,7 +171,7 @@ public class MainActivity extends Activity {
 ```
 简单说一下，显示内容其实在布局文件activity_main中，这里设置其中一个TextView字体风格为Typeface.NORMAL，这样的话，因为他不在默认使用styles.xml中的sans字体，所以全局对他来说便没有作用了。
 效果如下：
-![快速使用反射更换Android全局字体.jpg](http://upload-images.jianshu.io/upload_images/2467798-b60a29d78790d55f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![快速使用反射更换Android全局字体.jpg](https://github.com/54wall/FrontInstead/blob/master/快速使用反射更换Android全局字体.jpg)
 ####需要注意
 
 [Android如何高效率的替换整个APP的字体?](https://www.zhihu.com/question/38615247)
