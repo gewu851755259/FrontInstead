@@ -66,10 +66,8 @@ public class SetAppTypeface extends Application{
 ```
 
 Field这个类就是反射了，他可以获取相应字段，然后就可以通过反射设置不能设置的属性了（具体其实我也不是很懂）。
-
 #####为什么是SERIF-MONOSPACE-SANS_SERIF这几个字符串
 直接进入Typeface这个类，你会发现：
-
 
 ```
     static {
@@ -90,12 +88,10 @@ Field这个类就是反射了，他可以获取相应字段，然后就可以通
 
     }
 ```
-
 create就是在加载字体了。而SetAppTypeface这个类继承自Application，Android App启动后会首先加载这个类，实现反射替换App中的全部使用SANS_SERIF的字体，这样配合values/styles.xml进行全局默认字体样式选择就可以进行全局字体的更换了。
 
 ####修改values/styles.xml
 在styles.xml文件中找到<style name="AppTheme" parent="AppBaseTheme">并修改成下边的
-
 ```
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -103,11 +99,11 @@ create就是在加载字体了。而SetAppTypeface这个类继承自Application�
         <item name="android:typeface">sans</item>
     </style>
 ```
-
 这里android:typeface可以设置的仅仅有normal、sans、serif、monospace可以设置，因为我在SetAppTypeface类中设置的是Typeface.class.getDeclaredField("SANS_SERIF");
 所以我这里便设置成sans，如果getDeclaredField()设置的是其他的类型，则要选择同类型的其他诸如serif、monospace等等
 ####修改AndroidManifest.xml
 进入AndroidManifest.xml找到application这个tag，直接在其内部增加android:name=".SetAppTypeface"，完成后如下：
+```
 <application
         android:allowBackup="true"
         **android:name=".SetAppTypeface"**
@@ -123,9 +119,9 @@ create就是在加载字体了。而SetAppTypeface这个类继承自Application�
             </intent-filter>
         </activity>
     </application>
+```
 上边三步完成后就可以启动App看看效果了：
 我的MainActivity如下：
-
 ```
 package pri.weiqiang.frontinstead;
 
@@ -173,7 +169,7 @@ public class MainActivity extends Activity {
 ```
 简单说一下，显示内容其实在布局文件activity_main中，这里设置其中一个TextView字体风格为Typeface.NORMAL，这样的话，因为他不在默认使用styles.xml中的sans字体，所以全局对他来说便没有作用了。
 效果如下：
-![快速使用反射更换Android全局字体.jpg](https://github.com/54wall/FrontInstead/blob/master/快速使用反射更换Android全局字体.jpg)
+![快速使用反射更换Android全局字体.jpg](http://upload-images.jianshu.io/upload_images/2467798-b60a29d78790d55f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ####需要注意
 
 [Android如何高效率的替换整个APP的字体?](https://www.zhihu.com/question/38615247)
