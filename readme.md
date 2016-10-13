@@ -66,6 +66,7 @@ public class SetAppTypeface extends Application{
 ```
 
 Field这个类就是反射了，他可以获取相应字段，然后就可以通过反射设置不能设置的属性了（具体其实我也不是很懂）。
+
 #####为什么是SERIF-MONOSPACE-SANS_SERIF这几个字符串
 直接进入Typeface这个类，你会发现：
 
@@ -107,8 +108,6 @@ create就是在加载字体了。而SetAppTypeface这个类继承自Application�
 所以我这里便设置成sans，如果getDeclaredField()设置的是其他的类型，则要选择同类型的其他诸如serif、monospace等等
 ####修改AndroidManifest.xml
 进入AndroidManifest.xml找到application这个tag，直接在其内部增加android:name=".SetAppTypeface"，完成后如下：
-
-```
 <application
         android:allowBackup="true"
         **android:name=".SetAppTypeface"**
@@ -124,8 +123,6 @@ create就是在加载字体了。而SetAppTypeface这个类继承自Application�
             </intent-filter>
         </activity>
     </application>
-```
-
 上边三步完成后就可以启动App看看效果了：
 我的MainActivity如下：
 
